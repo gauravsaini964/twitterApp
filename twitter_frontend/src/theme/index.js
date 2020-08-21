@@ -25,24 +25,4 @@ export const theme = createTheme({
     black: "#f8f8f8",
     white: "#323232",
   },
-  defaultFontStyle: {
-    fontFamily: "Segoe-UI-Regular",
-    fontWeight: "regular",
-  },
-  fonts: {
-    small: {
-      fontSize: "13px",
-    },
-    medium: {
-      fontSize: "15px",
-    },
-    large: {
-      fontSize: "22px",
-      fontWeight: "semibold",
-    },
-    xLarge: {
-      fontSize: "24px",
-      fontWeight: "semibold",
-    },
-  },
 });
