@@ -1,14 +1,15 @@
 from rest_framework import serializers
-from .models import Tweet, AuthUser, TweetComment
+from .models import Tweet, AuthUser, TweetComment, TweetLike
 
 
 class TweetListSerializer(serializers.ModelSerializer):
     author_info = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
+    likes = serializers.SerializerMethodField()
 
     class Meta:
         model = Tweet
-        fields = ("tweet", "author_info", "comments", "created_at")
+        fields = ("tweet", "author_info", "comments", "created_at", "likes", "id")
 
     @staticmethod
     def get_author_info(obj):
@@ -21,3 +22,8 @@ class TweetListSerializer(serializers.ModelSerializer):
             "comment", "created_at", "author__first_name", "author_id", "author__last_name"
         )
         return comments
+
+    @staticmethod
+    def get_likes(obj):
+        likes = TweetLike.objects.filter(tweet_id=obj.id, flag=1).count()
+        return likes

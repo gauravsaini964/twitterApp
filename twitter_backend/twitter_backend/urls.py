@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework.routers import SimpleRouter
-from api.views import auth, tweet
+from api.views import auth, tweet, comments, likes
 
 router_obj = SimpleRouter()
 router_obj.register(
@@ -27,5 +27,7 @@ router_obj.register(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("v1/auth/", auth.LoginOrRegisterView.as_view()),
+    path("v1/comment/", comments.CommentsView.as_view()),
+    path("v1/likes/", likes.LikesView.as_view()),
     path("", include(router_obj.urls)),
 ]
