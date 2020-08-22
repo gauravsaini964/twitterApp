@@ -1,12 +1,12 @@
 import React from "react";
 import { Icon } from "@fluentui/react/lib/Icon";
-import { TextField, Persona, PersonaSize, CommandButton } from "@fluentui/react";
-import faker from "faker";
+import { TextField, Persona, PersonaSize, CommandButton, Spinner, SpinnerSize } from "@fluentui/react";
+import faker, { fake } from "faker";
 import "./index.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { TweetCard } from "../components";
+import { TweetCard } from "../../components";
 
 function App() {
   const [imageUrl] = useState(faker.image.avatar());
@@ -24,8 +24,8 @@ function App() {
     setTweet(value);
   };
 
-  return (
-    <div className='App'>
+  const renderContent = () => {
+    return (
       <div className='main-content'>
         <div className='sidebar'>
           <div className='heading-container'>
@@ -64,8 +64,10 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  return <div className='App'>{renderContent()}</div>;
 }
 
 export default App;

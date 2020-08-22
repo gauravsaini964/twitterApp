@@ -1,12 +1,21 @@
+import * as ACTION_TYPE from "../actions/types";
+
 const initialState = {
-  status: "Connected",
+  name: "",
+  email: "",
+  username: "",
+  profile_pic: "",
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SAMPLE_TYPE":
+    case ACTION_TYPE.SET_USER_INFO:
       return {
         ...state,
+        name: action.payload.name,
+        email: action.payload.email,
+        username: action.payload.username,
+        profile_pic: action.payload.pic,
       };
 
     default:
