@@ -6,6 +6,8 @@ import "./index.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import { TweetCard } from "../components";
+
 function App() {
   const [imageUrl] = useState(faker.image.avatar());
   const [tweet, setTweet] = useState("");
@@ -56,9 +58,9 @@ function App() {
           </div>
           <hr />
           <div className='tweet-container mt40'>
-            <div className='tweet-card'></div>
-            <div className='tweet-card'></div>
-            <div className='tweet-card'></div>
+            <TweetCard />
+            <TweetCard />
+            <TweetCard />
           </div>
         </div>
       </div>

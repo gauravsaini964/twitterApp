@@ -1,0 +1,64 @@
+.tweet-card {
+  margin-top: 1px;
+  min-height: 100px;
+  height: auto;
+  overflow: auto;
+  /* height: 150px; */
+  width: 100%;
+  border: 0;
+  border-bottom: 0.1px solid rgb(185, 185, 185);
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0.1px;
+  display: flex;
+  flex-direction: row;
+}
+.tweet-card:hover {
+  margin-top: 1px;
+  min-height: 100px;
+  height: auto;
+  overflow: auto;
+  width: 100%;
+  background-color: #3f3f3f;
+  border: 0;
+  border-bottom: 0.1px solid rgb(185, 185, 185);
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0.1px;
+  display: flex;
+  flex-direction: row;
+}
+.persona-container {
+  flex: 0.1;
+  align-self: flex-start;
+}
+.tweet-content-container {
+  flex: 0.9;
+}
+.tweet-top-row-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tweet-text {
+  display: flex;
+  font-weight: 500;
+  font-size: 16px;
+  color: whitesmoke;
+  text-align: left;
+}
+.like-comment-container {
+  display: flex;
+}
+.name {
+  font-weight: 600;
+  font-size: 16px;
+  color: whitesmoke;
+}
+.secondary-info {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(151, 151, 151);
+}
