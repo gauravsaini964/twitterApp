@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner, SpinnerSize } from "@fluentui/react";
 import moment from "moment";
@@ -9,17 +9,17 @@ import { fetchTweetList } from "../../../store/actions";
 const TweetList = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const { tweets } = useSelector((state) => state.tweetReducer);
+  const { tweets, noTweetsFound } = useSelector((state) => state.tweetReducer);
 
-  useEffect(() => {
-    if (!tweets.length) {
-      dispatch(fetchTweetList());
-    } else {
-      setIsLoading(false);
-    }
-  }, [tweets]);
+  useLayoutEffect(() => {
+    dispatch(fetchTweetList());
+    setIsLoading(false);
+  }, []);
 
   const renderCard = () => {
+    if (noTweetsFound) {
+      return <div style={{ color: "gray" }}>Tweet Something to get the party started</div>;
+    }
     const tweetList = tweets.map(
       ({ id, tweet, author_info, comments, likes, created_at, did_you_comment, did_you_like }) => {
         return (

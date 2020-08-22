@@ -2,6 +2,7 @@ import * as ACTION_TYPE from "../actions/types";
 
 const initialState = {
   tweets: [],
+  noTweetsFound: false,
 };
 
 const tweetReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const tweetReducer = (state = initialState, action) => {
       return {
         ...state,
         tweets: action.payload,
+        noTweetsFound: false,
+      };
+    case ACTION_TYPE.NO_TWEETS_FOUND:
+      return {
+        ...state,
+        noTweetsFound: true,
       };
 
     default:

@@ -7,7 +7,9 @@ export const setUserInfo = (payload) => (dispatch) => {
 
 export const fetchTweetList = () => async (dispatch) => {
   const { data, statusCode } = await tweetAPI.get("/tweet");
-  if (statusCode !== 200) {
+  if (statusCode === 404) {
+    dispatch({ type: ACTION_TYPE.NO_TWEETS_FOUND });
+  } else if (statusCode !== 200) {
     alert("Failed to fetch list of tweet");
   } else {
     dispatch({ type: ACTION_TYPE.SET_TWEET_LIST, payload: data.result });
