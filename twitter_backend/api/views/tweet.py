@@ -18,7 +18,12 @@ class TweetsView(ViewSet):
             tweets = Tweet.objects.filter(flag=True).order_by("-id")
             if search:
                 tweets = Tweet.objects.filter(tweet__icontains=search, flag=True).order_by("-id")
-            response_data = TweetListSerializer(instance=tweets, many=True).data
+            if not tweets:
+                res = {"message": "No tweets found", "status": status.HTTP_404_NOT_FOUND, "result": []}
+                return Response(res, res["status"])
+            response_data = TweetListSerializer(
+                instance=tweets, many=True, context={"user_id": request.requested_by}
+            ).data
             res = {"message": "Data fetched successfully", "status": status.HTTP_200_OK, "result": response_data}
             return Response(res, res["status"])
 

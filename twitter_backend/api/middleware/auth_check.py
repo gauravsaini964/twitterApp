@@ -3,6 +3,7 @@
 # from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
+from rest_framework.response import Response
 import jwt
 from rest_framework_jwt.authentication import api_settings
 from twitter_backend.settings import API_KEY
@@ -48,26 +49,20 @@ class KeyAndTokenCheck:
                         request.requested_by = payload.get("sub")
                 except AuthUser.DoesNotExist:
                     request.requested_by = None
-                    return HttpResponse(
-                        json.dumps({"message": "User is logged out. Login again."}), status.HTTP_401_UNAUTHORIZED
-                    )
+                    return HttpResponse(json.dumps({"message": "User is logged out. Login again."}), status=401,)
                 except jwt.ExpiredSignature:
                     request.requested_by = None
-                    return HttpResponse(
-                        json.dumps({"message": "Signature has expired."}), status.HTTP_401_UNAUTHORIZED
-                    )
+                    return HttpResponse(json.dumps({"message": "Signature has expired."}), status=401)
                 except jwt.DecodeError:
                     request.requested_by = None
-                    return HttpResponse(
-                        json.dumps({"message": "Error decoding signature."}), status.HTTP_401_UNAUTHORIZED
-                    )
+                    return HttpResponse(json.dumps({"message": "Error decoding signature."}), status=401)
                 except jwt.InvalidTokenError:
                     request.requested_by = None
-                    return HttpResponse(
-                        json.dumps({"message": "Incorrect authentication token."}), status.HTTP_401_UNAUTHORIZED
-                    )
+                    return HttpResponse(json.dumps({"message": "Incorrect authentication token."}), status=401,)
         except Exception as e:
-            return HttpResponse(json.dumps({"error": "No Authorization token provided"}), status.HTTP_401_UNAUTHORIZED)
+            return HttpResponse(
+                json.dumps({"error": "No Authorization token provided"}), status_code=status.HTTP_401_UNAUTHORIZED
+            )
 
         response = self.get_response(request)
         # Code to be executed for each request/response after

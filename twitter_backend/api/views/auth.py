@@ -46,6 +46,7 @@ class LoginOrRegisterView(APIView):
                 "id": user_obj.id,
                 "pic": user_obj.profile_pic,
                 "token": JWT_ENCODER(jwt_payload_handler(user_obj)),
+                "username": user_obj.username,
             }
 
             if user_obj:
@@ -91,6 +92,7 @@ class LoginView(APIView):
                 "email": user_obj.email,
                 "id": user_obj.id,
                 "pic": user_obj.profile_pic,
+                "username": user_obj.username,
                 "token": JWT_ENCODER(jwt_payload_handler(user_obj)),
             }
 
