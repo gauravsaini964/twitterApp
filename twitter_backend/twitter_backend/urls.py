@@ -27,6 +27,7 @@ router_obj.register(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("v1/auth/", auth.LoginOrRegisterView.as_view()),
+    path("v1/login/", auth.LoginView.as_view()),
     path("v1/comment/", comments.CommentsView.as_view()),
     path("v1/likes/", likes.LikesView.as_view()),
     path("", include(router_obj.urls)),

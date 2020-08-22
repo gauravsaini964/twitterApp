@@ -34,6 +34,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
+AUTH_USER_MODEL = "api.AuthUser"
 
 INSTALLED_APPS = [
     "django.contrib.admin",

@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 
-class AuthUser(models.Model):
+class AuthUser(AbstractUser):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
     is_superuser = models.BooleanField(default=False)
@@ -14,9 +15,10 @@ class AuthUser(models.Model):
     is_active = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_name = models.CharField(max_length=150)
+    profile_pic = models.CharField(max_length=500, blank=False, null=False)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = "auth_user"
 
 

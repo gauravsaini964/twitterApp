@@ -13,7 +13,11 @@ class TweetListSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_author_info(obj):
-        author_info = AuthUser.objects.filter(id=obj.author_id).values("first_name", "last_name", "username").first()
+        author_info = (
+            AuthUser.objects.filter(id=obj.author_id)
+            .values("first_name", "last_name", "username", "profile_pic")
+            .first()
+        )
         return author_info
 
     @staticmethod
