@@ -24,7 +24,7 @@ class App extends React.PureComponent {
         last_name: faker.name.lastName(),
         profile_pic: faker.image.avatar(),
       };
-      const { data, error, statusCode } = await authAPI.post("/v1/auth/", authData);
+      const { data, statusCode } = await authAPI.post("/v1/auth/", authData);
       if (statusCode === 201 || statusCode === 200) {
         localStorage.setItem("token", `Bearer ${data.result.token}`);
         this.props.setUserInfo(data.result);
@@ -34,7 +34,7 @@ class App extends React.PureComponent {
         this.setState({ isLoading: false });
       }
     } else {
-      const { data, error, statusCode } = await authAPI.post("/v1/login/");
+      const { data, statusCode } = await authAPI.post("/v1/login/");
       if (statusCode === 200) {
         this.setState({ isLoading: false });
         this.props.setUserInfo(data.result);

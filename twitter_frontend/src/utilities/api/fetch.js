@@ -46,6 +46,13 @@ const useFetch = (baseURL, authHeader = null, key = "dsHSYWhbdas17876735Hdada") 
     const response = await customFetch(url, "POST", body);
     return responseChecker(response);
   };
+  const deleteMethod = async (endpoint, body = {}) => {
+    const token = localStorage.getItem("token");
+    defaultHeader.Authorization = token;
+    const url = `${baseURL}${endpoint}`;
+    const response = await customFetch(url, "DELETE", body);
+    return responseChecker(response);
+  };
   const put = async (endpoint, body = {}) => {
     const token = localStorage.getItem("token");
     defaultHeader.Authorization = token;
@@ -57,6 +64,7 @@ const useFetch = (baseURL, authHeader = null, key = "dsHSYWhbdas17876735Hdada") 
     get,
     post,
     put,
+    deleteMethod,
   };
 };
 export default useFetch;
