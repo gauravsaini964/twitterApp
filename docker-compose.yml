@@ -1,0 +1,21 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: twitter_backend/
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1
+
+  frontend:
+    build:
+      context: twitter_frontend/
+      dockerfile: Dockerfile.dev
+    stdin_open: true
+    command: ["yarn", "start"]
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
