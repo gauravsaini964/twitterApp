@@ -43,9 +43,9 @@ Sorta like twitter is a project in Django/ReactJs which imitates basic feature o
 		 4. Then execute `docker run -it -p 3000:3000 sainigaurav/twitterfrontend`
 
  - Method 3 : Docker Compose
-		 1. Clone the project
-		 2. Run `docker-compose up --build`
-		 3. Use `docker-compose up` for subsequent run.
+	 1. Clone the project
+	 2. Run `docker-compose up --build`
+	 3. Use `docker-compose up` for subsequent run.
 		 
 
 ## API List
